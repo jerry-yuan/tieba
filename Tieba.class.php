@@ -18,15 +18,17 @@ class CTieba{
     }
 
     public function getTbs(){
-        $response = Requests::get(self::TBS_URL, $this->_headers);
-        $response = json_decode($response->body);
+        //$response = Requests::get(self::TBS_URL, $this->_headers);
+		$response = wp_remote_get(self::TBS_URL,["headers"=>$this->_headers]);
+        $response = json_decode($response['body']);
         return $response->tbs;
     }
 
     public function sign($kw){
         $data = array('kw' => $kw,'tbs' => $this->getTbs());
-        $response = Requests::get(self::SIGN_URL."?".$this->encrypt($data), $this->_headers);
-        $response = json_decode($response->body);
+		$response = wp_remote_get(self::SIGN_URL."?".$this->encrypt($data),["headers"=>$this->_headers]);
+        //$response = Requests::get(self::SIGN_URL."?".$this->encrypt($data), $this->_headers);
+        $response = json_decode($response['body']);
         $result = new StdClass;
         if($response->error_code != 0){
             $result->status = false;
@@ -52,8 +54,9 @@ class CTieba{
 
     public function getFavForums(){
         $data = array('tbs'=>$this->getTbs());
-        $response = Requests::get(self::FAV_URL."?".$this->encrypt($data), $this->_headers);
-        $response = (array)json_decode($response->body);
+        //$response = Requests::get(self::FAV_URL."?".$this->encrypt($data), $this->_headers);
+		$response = wp_remote_get(self::FAV_URL."?".$this->encrypt($data), ["headers"=>$this->_headers]);
+        $response = (array)json_decode($response['body']);
 
         return $response['forum_list'];
     }
