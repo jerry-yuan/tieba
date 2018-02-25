@@ -1,24 +1,14 @@
 # 百度贴吧签到库
 
-提供一个基于cookie验证的百度贴吧签到方案
+提供一个基于cookie验证的百度贴吧签到方案,使用WordPress的HTTP请求库
 
 ## 安装
-
-### 使用composer安装
-
-在`composer.json`里的require增加
-
-  `"friparia/tieba": "dev-master"`
-
-然后执行 
-
-  `composer update`
 
 ### 使用github
 
   直接使用
 
-  `git clone git@github.com:friparia/tieba.git`
+  `https://github.com/jerry-yuan/tieba.git`
 
   然后编辑并执行`demo.php`
 
@@ -35,7 +25,3 @@ $tieba->sign($kw);
 //提供所有自己喜欢的贴吧签到
 $tieba->multisign();
 ```
-
-## 自动签到
-
-将多人的BDUSS存到`storing.json`里面，并将cron.php写入你的crontab中，每天一次，即可实现自动签到

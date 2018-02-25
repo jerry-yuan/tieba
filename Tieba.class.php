@@ -1,5 +1,4 @@
 <?php
-require 'vendor/autoload.php';
 class CTieba{
     private $_headers = array();
     const TBS_URL = "http://tieba.baidu.com/dc/common/tbs";
