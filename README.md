@@ -25,3 +25,6 @@ $tieba->sign($kw);
 //提供所有自己喜欢的贴吧签到
 $tieba->multisign();
 ```
+
+## 鸣谢
+Fork 自 friparia/tieba
